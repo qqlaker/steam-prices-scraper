@@ -9,6 +9,7 @@ def proxies_parse():
     useragents = open('useragents.TXT').read().split('\n')
     useragent = {'User-Agent': choice(useragents)}
     proxy = {'http': 'http://' + '191.101.39.193:80'}
+    # hidemy.name outdated
     request = requests.get('https://hidemy.name/ru/proxy-list/?maxtime=600&type=h&anon=4#list', headers=useragent, proxies=proxy)
     request = request.text
     soup = BeautifulSoup(request, features='html.parser')
@@ -29,10 +30,8 @@ def change_proxy(proxies):
 def main():
     proxies = []
     names = open('marketnames.TXT').read().split('\n')
-    proxies = proxies_parse()
+    # proxies = proxies_parse()
     with open('proxies.TXT', 'r') as p:
-        print('opened')
-        print('here')
         proxies.append(p.read())
     proxy, useragent = change_proxy(proxies)
     for i in range(1000):
